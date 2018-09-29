@@ -7,21 +7,25 @@ public class PlayerController : MonoBehaviour
 {
     public float speed, jump_velocity, clip_radius, max_left_speed,
         damping_on_grounded, trampoline_velocity;
+    public float player_gravity;
     public GameObject center;
     public LayerMask layers_to_clip_to;
     public Transform shockwave_prefab;
+    public Transform game_controller;
 
     private Rigidbody player_rb;
     private bool is_grounded;
     private float distToGround;
     private GameObject clippable_obj;
-    private bool shock = true;
-
+    private GameTimer game_timer;
+    private float delta_time_multiplier;
     void Start()
     {
         player_rb = GetComponent<Rigidbody>();
         distToGround = GetComponent<Collider>().bounds.extents.z;
         player_rb.collisionDetectionMode = CollisionDetectionMode.Continuous;
+        game_timer = game_controller.GetComponent<GameTimer>();
+        delta_time_multiplier = 1;
     }
 
     private void Update()
@@ -79,7 +83,6 @@ public class PlayerController : MonoBehaviour
         //handle rotation of player
         transform.LookAt(center.transform);
 
-        float gravity = 10f;
         //handle jumping / player gravity / speed damping when grounded
         if (is_grounded)
         {
@@ -91,7 +94,7 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            player_rb.velocity += direction_to_center * gravity * Time.fixedDeltaTime;
+            player_rb.velocity += direction_to_center * player_gravity * Time.fixedDeltaTime;
         }
 
         //handle platform clipping
@@ -99,14 +102,6 @@ public class PlayerController : MonoBehaviour
         {
             player_rb.velocity = Vector3.zero;
             transform.position = clippable_obj.transform.position + clippable_obj.transform.up*0.4f;
-        }
-
-        if (Input.GetKeyUp(KeyCode.S) && shock)
-        {
-            shock = false;
-            Transform shockwave = Instantiate(shockwave_prefab, transform.position, Quaternion.identity);
-            shockwave.transform.eulerAngles = new Vector3(-90, 0, 0);
-            shockwave.GetComponent<ShockwaveForce>().ShockWave();
         }
     }
 
@@ -135,5 +130,27 @@ public class PlayerController : MonoBehaviour
         {
             is_grounded = false;
         }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.transform.tag == "SolarFlarePowerup")
+        {
+            Transform shockwave = Instantiate(shockwave_prefab, other.transform.position, Quaternion.identity);
+            shockwave.transform.eulerAngles = new Vector3(-90, 0, 0);
+            shockwave.GetComponent<ShockwaveForce>().ShockWave();
+
+            Destroy(other.gameObject);
+        }
+        if(other.transform.tag == "TimeSlowPowerup")
+        {
+            game_timer.time_slow_powerup(5f);
+            Destroy(other.gameObject);
+        }
+    }
+
+    public void set_delta_time_multiplier(float delta_time_multiplier)
+    {
+        this.delta_time_multiplier = delta_time_multiplier;
     }
 }

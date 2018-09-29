@@ -8,6 +8,8 @@ TagManager:
   - BlackHole
   - Astroid
   - Trampoline
+  - SolarFlarePowerup
+  - TimeSlowPowerup
   layers:
   - Default
   - TransparentFX
@@ -21,7 +23,7 @@ TagManager:
   - Platform
   - Player
   - Astroid
-  - 
+  - Background
   - 
   - 
   - 
