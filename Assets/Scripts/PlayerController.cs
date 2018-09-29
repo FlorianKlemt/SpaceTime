@@ -76,6 +76,9 @@ public class PlayerController : MonoBehaviour
             //player_rb.AddForce(-current_left * speed);
         }
 
+        //handle rotation of player
+        transform.LookAt(center.transform);
+
         float gravity = 10f;
         //handle jumping / player gravity / speed damping when grounded
         if (is_grounded)

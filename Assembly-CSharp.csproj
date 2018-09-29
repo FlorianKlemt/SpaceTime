@@ -61,9 +61,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\GameTimer.cs" />
+    <Compile Include="Assets\BlackHoleSizeController.cs" />
     <Compile Include="Assets\Scripts\AstroidController.cs" />
     <Compile Include="Assets\Scripts\AstroidGenerator.cs" />
+    <Compile Include="Assets\Scripts\EventHorizonChecker.cs" />
+    <Compile Include="Assets\Scripts\EventHorizonHandler.cs" />
+    <Compile Include="Assets\Scripts\GameTimer.cs" />
     <Compile Include="Assets\Scripts\Gravity.cs" />
     <Compile Include="Assets\Scripts\PlatformController.cs" />
     <Compile Include="Assets\Scripts\PlayerController.cs" />
