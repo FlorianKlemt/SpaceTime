@@ -10,6 +10,7 @@ TagManager:
   - Trampoline
   - SolarFlarePowerup
   - TimeSlowPowerup
+  - BouncePowerup
   layers:
   - Default
   - TransparentFX

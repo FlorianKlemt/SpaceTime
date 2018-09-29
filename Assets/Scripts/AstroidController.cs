@@ -35,14 +35,6 @@ public class AstroidController : MonoBehaviour {
         }
 	}
 
-    private void OnCollisionEnter(Collision collision)
-    {
-        if(collision.transform.tag == "Platform")
-        {
-            Destroy(gameObject);
-        }
-    }
-
     private void OnTriggerEnter(Collider other)
     {
         if (other.transform.tag == "BlackHole")

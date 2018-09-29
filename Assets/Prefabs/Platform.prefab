@@ -125,3 +125,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   platform_lives: 2
+  reflected_astroid_death_time: 3
+  astroid_reflection_speed_multiplier: 2

@@ -147,6 +147,15 @@ public class PlayerController : MonoBehaviour
             game_timer.time_slow_powerup(5f);
             Destroy(other.gameObject);
         }
+        if(other.transform.tag == "BouncePowerup")
+        {
+            GameObject[] platforms = GameObject.FindGameObjectsWithTag("Platform");
+            foreach(GameObject platform in platforms)
+            {
+                platform.GetComponent<PlatformController>().set_bounce_powerup(5f);
+            }
+            Destroy(other.gameObject);
+        }
     }
 
     public void set_delta_time_multiplier(float delta_time_multiplier)
