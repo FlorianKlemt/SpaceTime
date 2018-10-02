@@ -18,6 +18,7 @@ public class PlayerController : MonoBehaviour
     private float distToGround;
     private GameObject clippable_obj;
     private GameTimer game_timer;
+    private PowerupGenerator powerup_generator;
     private float delta_time_multiplier;
     void Start()
     {
@@ -25,6 +26,7 @@ public class PlayerController : MonoBehaviour
         distToGround = GetComponent<Collider>().bounds.extents.z;
         player_rb.collisionDetectionMode = CollisionDetectionMode.Continuous;
         game_timer = game_controller.GetComponent<GameTimer>();
+        powerup_generator = game_controller.GetComponent<PowerupGenerator>();
         delta_time_multiplier = 1;
     }
 
@@ -140,11 +142,14 @@ public class PlayerController : MonoBehaviour
             shockwave.transform.eulerAngles = new Vector3(-90, 0, 0);
             shockwave.GetComponent<ShockwaveForce>().ShockWave();
 
+            powerup_generator.powerup_taken(other.gameObject);
             Destroy(other.gameObject);
         }
         if(other.transform.tag == "TimeSlowPowerup")
         {
             game_timer.time_slow_powerup(5f);
+
+            powerup_generator.powerup_taken(other.gameObject);
             Destroy(other.gameObject);
         }
         if(other.transform.tag == "BouncePowerup")
@@ -154,6 +159,8 @@ public class PlayerController : MonoBehaviour
             {
                 platform.GetComponent<PlatformController>().set_bounce_powerup(5f);
             }
+
+            powerup_generator.powerup_taken(other.gameObject);
             Destroy(other.gameObject);
         }
     }

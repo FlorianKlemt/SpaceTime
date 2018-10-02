@@ -62,6 +62,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\BlackHoleSizeController.cs" />
+    <Compile Include="Assets\PowerupGenerator.cs" />
     <Compile Include="Assets\Scripts\AstroidController.cs" />
     <Compile Include="Assets\Scripts\AstroidGenerator.cs" />
     <Compile Include="Assets\Scripts\EventHorizonChecker.cs" />
