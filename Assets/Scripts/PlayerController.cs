@@ -151,7 +151,7 @@ public class PlayerController : MonoBehaviour
         {
             Transform shockwave = Instantiate(shockwave_prefab, other.transform.position, Quaternion.identity);
             shockwave.transform.eulerAngles = new Vector3(-90, 0, 0);
-            shockwave.GetComponent<ShockwaveForce>().ShockWave();
+            //shockwave.GetComponent<ShockwaveForce>().ShockWave();
 
             powerup_generator.powerup_taken(other.gameObject);
             Destroy(other.gameObject);
