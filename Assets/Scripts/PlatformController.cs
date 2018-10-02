@@ -72,9 +72,7 @@ public class PlatformController : MonoBehaviour {
                     mesh_renderer.material.color = Color.grey;
                     break;
                 case 0:
-                    powerup_generator.platform_removed(gameObject);
-                    //wait for 0.1 for safety reasons, unity gives really weird errors
-                    //Destroy(gameObject,0.1f);
+                    Destroy(gameObject);
                     break;
             }
         }
