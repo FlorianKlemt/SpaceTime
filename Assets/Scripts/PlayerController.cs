@@ -107,6 +107,14 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    private void OnCollisionStay(Collision collision)
+    {
+        if (collision.transform.tag == "Platform")
+        {
+            is_grounded = true;
+        }
+    }
+
     void OnCollisionEnter(Collision collision)
     {
         if (collision.transform.tag == "Platform")

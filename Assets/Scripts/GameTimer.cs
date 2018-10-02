@@ -36,10 +36,10 @@ public class GameTimer : MonoBehaviour {
 	void Update () {
         if (time_slow_powerup_duration > 0)
         {
-            Time.timeScale = time_slow_powerup_scale;
+            /*Time.timeScale = time_slow_powerup_scale;
             float delta_time_multiplier = 1 / time_slow_powerup_scale;
-            player_controller.set_delta_time_multiplier(delta_time_multiplier);
-            time_slow_powerup_duration -= Time.deltaTime * delta_time_multiplier;
+            player_controller.set_delta_time_multiplier(delta_time_multiplier);*/
+            time_slow_powerup_duration -= Time.deltaTime;// * delta_time_multiplier;
         }
         else if (event_horizon_checker.is_inside_horizon())
         {

@@ -9,7 +9,7 @@ public class PowerupGenerator : MonoBehaviour {
     public int max_simultaneous_powerups;
     public float spawn_prob_per_sec_solarflare, spawn_prob_per_sec_timeslow, spawn_prob_per_sec_bounce;
 
-    private GameObject[] platforms;
+    private List<GameObject> platforms;
     private int update_each = 1;
     private float time_to_next_update;
     private Dictionary<GameObject,GameObject> platform_powerup_map;
@@ -17,7 +17,7 @@ public class PowerupGenerator : MonoBehaviour {
     
     // Use this for initialization
     void Start () {
-        platforms = GameObject.FindGameObjectsWithTag("Platform");
+        platforms = GameObject.FindGameObjectsWithTag("Platform").ToList();
         platform_powerup_map = new Dictionary<GameObject, GameObject>();
         blocked_platforms = new List<GameObject>();
         time_to_next_update = update_each;
@@ -35,18 +35,21 @@ public class PowerupGenerator : MonoBehaviour {
             time_to_next_update -= Time.deltaTime;
         }
 
-        //NOTE: this part is necessary even though platform removement should be already handled
-        //Unity is weird and stuff is done at seemingly random times to just update stuff here
-        //renew platform list
-        GameObject[] new_platforms = GameObject.FindGameObjectsWithTag("Platform");
-        Debug.Log("New Platforms is null: " + (new_platforms == null));
+
+        List<GameObject> new_platforms = GameObject.FindGameObjectsWithTag("Platform").ToList();
 
         //update platform_powerup map
-        List<GameObject> invalidated_platforms = platforms.Except(new_platforms).ToList();
+        /*List<GameObject> invalidated_platforms = platforms.Except(new_platforms).ToList();
         foreach (GameObject invalid_platform in invalidated_platforms)
         {
+            if (invalid_platform == null)
+            {
+                continue;
+            }
+            Debug.Log("Invalid Platform: " + invalid_platform + " is null: " + (invalid_platform == null));
             if (blocked_platforms.Contains(invalid_platform))
             {
+                Debug.Log("Contains Invalid Platform: " + invalid_platform + " is null: " + (invalid_platform == null));
                 GameObject powerup_to_destroy = platform_powerup_map[invalid_platform];
                 blocked_platforms.Remove(invalid_platform);
                 platform_powerup_map.Remove(invalid_platform);
@@ -56,10 +59,21 @@ public class PowerupGenerator : MonoBehaviour {
                 }
                 Debug.Log("Initial Remove: " + platform_powerup_map + " Size: " + platform_powerup_map.Count);
             }
-        }
+        }*/
 
         //renew platform list part 2
         platforms = new_platforms;
+
+        List<GameObject> current_platform_powerup_keys = platform_powerup_map.Keys.ToList();
+        foreach(GameObject key in current_platform_powerup_keys)
+        {
+            if (!platforms.Contains(key))
+            {
+                Destroy(platform_powerup_map[key]);
+                platform_powerup_map.Remove(key);
+                blocked_platforms.Remove(key);
+            }
+        }
     }
 
     void update_powerups()
@@ -89,10 +103,15 @@ public class PowerupGenerator : MonoBehaviour {
             Vector3 spawn_position = get_spawn_position(spawn_platform);
 
             Transform powerup = Instantiate(powerup_prefab, spawn_position, get_spawn_rotation(spawn_position));
-            if (powerup != null)
+            if (powerup != null && platform_powerup_map != null)
             {
                 platform_powerup_map.Add(spawn_platform, powerup.gameObject);
                 blocked_platforms.Add(spawn_platform);
+            }
+            else
+            {
+                Debug.Log("Map: " + platform_powerup_map + "   Is Null: " + (platform_powerup_map == null));
+                Debug.Log("Powerup: "+powerup +"   Is Null: "+ (powerup==null));
             }
         }
     }
