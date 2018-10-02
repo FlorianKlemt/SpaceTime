@@ -18,38 +18,24 @@ public class ShockwaveForce : MonoBehaviour
 
     private void Update()
     {
-        List<Rigidbody> affected_rbs = new List<Rigidbody>();
+        time_since_explosion_start += Time.deltaTime;
+        float explosion_speed = 9.0f;   //this is evaluated experimentally - @future self: dont judge me
+
         Collider[] colliders = Physics.OverlapSphere(transform.position, radius, shockwave_layer_mask);
         foreach (Collider col in colliders)
         {
-            Rigidbody rigidbody = col.GetComponent<Rigidbody>();
-            if (rigidbody != null)
-            {
-                affected_rbs.Add(rigidbody);
-            }
-        }
-
-        time_since_explosion_start += Time.deltaTime;
-
-        float explosion_speed = 9.0f;   //this is evaluated experimentally - @future self: dont judge me
-        for(int i=affected_rbs.Count-1; i>=0; i--)
-        {
-            Rigidbody rb = affected_rbs[i];
-            if (rb == null) //affected rigidbody might have been destroyed
-            {
-                affected_rbs.RemoveAt(i);
-            }
-            else
+            Rigidbody rb = col.GetComponent<Rigidbody>();
+            if (rb != null)
             {
                 float explosion_distance_travelled = time_since_explosion_start * explosion_speed;
                 float current_distance_to_explosion_center = (rb.transform.position - transform.position).magnitude;
 
-                if (current_distance_to_explosion_center < explosion_distance_travelled)
+                if (explosion_distance_travelled*0.8 < current_distance_to_explosion_center
+                    && current_distance_to_explosion_center < explosion_distance_travelled)
                 {
                     rb.AddExplosionForce(force, transform.position, radius);
                     rb.GetComponent<Collider>().enabled = false;
                     Destroy(rb.gameObject, 2f);
-                    affected_rbs.RemoveAt(i);
                 }
             }
         }
