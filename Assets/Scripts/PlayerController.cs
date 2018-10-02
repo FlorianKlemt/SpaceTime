@@ -52,6 +52,9 @@ public class PlayerController : MonoBehaviour
                 Debug.Log("Multiple clippable objects! Should not be the case.");
             }
         }
+
+        //at end of update cycle set ungrounded to make interaction with potentially disappearing platforms correct
+        is_grounded = false;
     }
 
     // Update is called once per frame

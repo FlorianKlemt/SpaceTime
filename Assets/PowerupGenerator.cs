@@ -37,31 +37,6 @@ public class PowerupGenerator : MonoBehaviour {
 
 
         List<GameObject> new_platforms = GameObject.FindGameObjectsWithTag("Platform").ToList();
-
-        //update platform_powerup map
-        /*List<GameObject> invalidated_platforms = platforms.Except(new_platforms).ToList();
-        foreach (GameObject invalid_platform in invalidated_platforms)
-        {
-            if (invalid_platform == null)
-            {
-                continue;
-            }
-            Debug.Log("Invalid Platform: " + invalid_platform + " is null: " + (invalid_platform == null));
-            if (blocked_platforms.Contains(invalid_platform))
-            {
-                Debug.Log("Contains Invalid Platform: " + invalid_platform + " is null: " + (invalid_platform == null));
-                GameObject powerup_to_destroy = platform_powerup_map[invalid_platform];
-                blocked_platforms.Remove(invalid_platform);
-                platform_powerup_map.Remove(invalid_platform);
-                if (powerup_to_destroy != null)
-                {
-                    Destroy(powerup_to_destroy);
-                }
-                Debug.Log("Initial Remove: " + platform_powerup_map + " Size: " + platform_powerup_map.Count);
-            }
-        }*/
-
-        //renew platform list part 2
         platforms = new_platforms;
 
         List<GameObject> current_platform_powerup_keys = platform_powerup_map.Keys.ToList();
