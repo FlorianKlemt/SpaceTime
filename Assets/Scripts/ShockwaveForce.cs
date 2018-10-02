@@ -38,6 +38,12 @@ public class ShockwaveForce : MonoBehaviour
     IEnumerator DelayedForce(Rigidbody rb, float wait_time)
     {
         yield return new WaitForSeconds(wait_time);
-        rb.AddExplosionForce(force, transform.position, radius);
+        //the rigidbody or its gameObject might have been destroyed in the wait_time
+        if (rb != null && rb.gameObject != null)
+        {
+            rb.AddExplosionForce(force, transform.position, radius);
+            rb.GetComponent<Collider>().enabled = false;
+            Destroy(rb.gameObject, 2f);
+        }
     }
 }

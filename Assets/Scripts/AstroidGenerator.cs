@@ -6,11 +6,13 @@ public class AstroidGenerator : MonoBehaviour {
     public GameObject astroid_prefab;
     public GameObject center;
     public float spawn_distance_to_center;
+    public float new_astroid_time;
 
     private float time_till_astroid;
+  
     // Use this for initialization
     void Start () {
-        time_till_astroid = 2.0f;
+        time_till_astroid = new_astroid_time;
     }
 	
 	// Update is called once per frame
@@ -18,7 +20,7 @@ public class AstroidGenerator : MonoBehaviour {
 		if((time_till_astroid-=Time.deltaTime) <= 0)
         {
             generateAstroid();
-            time_till_astroid = 2.0f;
+            time_till_astroid = new_astroid_time;
         }
 	}
 
@@ -26,7 +28,6 @@ public class AstroidGenerator : MonoBehaviour {
     {
         Vector3 random_on_circle = Random.insideUnitCircle.normalized;
         Vector3 spawn_offset = new Vector3(random_on_circle.x, 0, random_on_circle.y) * spawn_distance_to_center;
-        Debug.Log(spawn_offset);
         Vector3 spawn_position = center.transform.position + spawn_offset;
         Instantiate(astroid_prefab, spawn_position, Random.rotation);
     }

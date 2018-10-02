@@ -8,11 +8,15 @@ public class PlatformController : MonoBehaviour {
 
     private float bounce_powerup_duration;
     private bool bounce_active;
-    //private PhysicMaterial bounce_mat;
+    private PowerupGenerator powerup_generator;
     // Use this for initialization
     void Start () {
         bounce_powerup_duration = 0;
         bounce_active = false;
+
+        
+        powerup_generator = GameObject.FindGameObjectWithTag("GameController")
+                                      .GetComponent<PowerupGenerator>();
     }
 	
 	// Update is called once per frame
@@ -68,7 +72,9 @@ public class PlatformController : MonoBehaviour {
                     mesh_renderer.material.color = Color.grey;
                     break;
                 case 0:
-                    Destroy(gameObject);
+                    powerup_generator.platform_removed(gameObject);
+                    //wait for 0.1 for safety reasons, unity gives really weird errors
+                    //Destroy(gameObject,0.1f);
                     break;
             }
         }

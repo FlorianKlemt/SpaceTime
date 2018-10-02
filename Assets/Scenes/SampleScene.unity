@@ -403,7 +403,7 @@ GameObject:
   - component: {fileID: 426143275}
   m_Layer: 0
   m_Name: GameController
-  m_TagString: Untagged
+  m_TagString: GameController
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -436,6 +436,7 @@ MonoBehaviour:
     type: 2}
   center: {fileID: 777038645}
   spawn_distance_to_center: 15
+  new_astroid_time: 2
 --- !u!114 &426143275
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -455,9 +456,9 @@ MonoBehaviour:
   bounce_powerup_prefab: {fileID: 4796924401600216, guid: ae81b5bd2cec71c4c8e6a0d2166256fb,
     type: 2}
   max_simultaneous_powerups: 4
-  spawn_prob_per_sec_solarflare: 0.1
-  spawn_prob_per_sec_timeslow: 0.1
-  spawn_prob_per_sec_bounce: 0.1
+  spawn_prob_per_sec_solarflare: 1
+  spawn_prob_per_sec_timeslow: 1
+  spawn_prob_per_sec_bounce: 1
 --- !u!114 &426143276
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1135,6 +1136,10 @@ Prefab:
       propertyPath: m_LocalScale.x
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 1784462882959994, guid: 6e06a872e1ec5944a828e4bb30461117, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6e06a872e1ec5944a828e4bb30461117, type: 2}
   m_IsPrefabAsset: 0
@@ -1189,6 +1194,10 @@ Prefab:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -25
       objectReference: {fileID: 0}
+    - target: {fileID: 1784462882959994, guid: 6e06a872e1ec5944a828e4bb30461117, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6e06a872e1ec5944a828e4bb30461117, type: 2}
   m_IsPrefabAsset: 0
@@ -1239,6 +1248,10 @@ Prefab:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -90
       objectReference: {fileID: 0}
+    - target: {fileID: 1784462882959994, guid: 6e06a872e1ec5944a828e4bb30461117, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6e06a872e1ec5944a828e4bb30461117, type: 2}
   m_IsPrefabAsset: 0
@@ -1288,6 +1301,10 @@ Prefab:
     - target: {fileID: 4611995086560624, guid: 6e06a872e1ec5944a828e4bb30461117, type: 2}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: 1784462882959994, guid: 6e06a872e1ec5944a828e4bb30461117, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6e06a872e1ec5944a828e4bb30461117, type: 2}
@@ -1486,6 +1503,10 @@ Prefab:
       propertyPath: m_CollisionDetection
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1784462882959994, guid: 6e06a872e1ec5944a828e4bb30461117, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6e06a872e1ec5944a828e4bb30461117, type: 2}
   m_IsPrefabAsset: 0
@@ -1539,6 +1560,10 @@ Prefab:
     - target: {fileID: 4611995086560624, guid: 6e06a872e1ec5944a828e4bb30461117, type: 2}
       propertyPath: m_LocalEulerAnglesHint.z
       value: -50
+      objectReference: {fileID: 0}
+    - target: {fileID: 1784462882959994, guid: 6e06a872e1ec5944a828e4bb30461117, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6e06a872e1ec5944a828e4bb30461117, type: 2}
