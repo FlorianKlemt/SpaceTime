@@ -40,9 +40,10 @@ GameObject:
   - component: {fileID: 33730861049426722}
   - component: {fileID: 23863913832161496}
   - component: {fileID: 65910238964434064}
+  - component: {fileID: 114793715661173754}
   m_Layer: 0
   m_Name: JumpPlatform
-  m_TagString: Untagged
+  m_TagString: Trampoline
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -53,14 +54,14 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1707059332503756}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.67, y: 0, z: 7.48}
-  m_LocalScale: {x: 2, y: 0.2, z: 0.3}
+  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 2.5, y: 0, z: 7.48}
+  m_LocalScale: {x: 2, y: 0.3, z: 0.2}
   m_Children:
   - {fileID: 4896724847963218}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!4 &4896724847963218
 Transform:
   m_ObjectHideFlags: 1
@@ -68,7 +69,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1579934329225020}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 1}
+  m_LocalPosition: {x: 0, y: 1, z: 0}
   m_LocalScale: {x: 0.6, y: 1, z: 0.5}
   m_Children: []
   m_Father: {fileID: 4400793320051138}
@@ -182,3 +183,16 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &114793715661173754
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1707059332503756}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ab260681ce432141876ba06fcea0540, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  reflected_astroid_death_time: 1
+  astroid_reflection_speed_multiplier: 10

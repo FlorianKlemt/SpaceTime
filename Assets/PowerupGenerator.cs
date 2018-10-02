@@ -52,18 +52,24 @@ public class PowerupGenerator : MonoBehaviour {
     }
 
     void update_powerups()
-    { 
-        if (Random.value < spawn_prob_per_sec_solarflare)
+    {
+        bool spawn_solarflare = Random.value < spawn_prob_per_sec_solarflare;
+        bool spawn_timeslow = Random.value < spawn_prob_per_sec_timeslow;
+        bool spawn_bounce = Random.value < spawn_prob_per_sec_bounce;
+
+        List<Transform> prefabs_to_spawn_this_update = new List<Transform>{};
+        if(spawn_solarflare)
+            prefabs_to_spawn_this_update.Add(solarflare_powerup_prefab);
+        if (spawn_timeslow)
+            prefabs_to_spawn_this_update.Add(timeslow_powerup_prefab);
+        if (spawn_bounce)
+            prefabs_to_spawn_this_update.Add(bounce_powerup_prefab);
+        //random order
+        prefabs_to_spawn_this_update = prefabs_to_spawn_this_update.OrderBy(x => Random.value).ToList();
+
+        foreach (Transform t in prefabs_to_spawn_this_update)
         {
-            spawn_powerup(solarflare_powerup_prefab);
-        }
-        if (Random.value < spawn_prob_per_sec_timeslow)
-        {
-            spawn_powerup(timeslow_powerup_prefab);
-        }
-        if (Random.value < spawn_prob_per_sec_bounce)
-        {
-            spawn_powerup(bounce_powerup_prefab);
+            spawn_powerup(t);
         }
     }
 
