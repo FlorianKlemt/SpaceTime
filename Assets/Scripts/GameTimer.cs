@@ -9,7 +9,6 @@ public class GameTimer : MonoBehaviour {
     public Transform player;
     public float inside_clock_time_speed, outside_clock_time_speed;
     public float inside_time_scale, outside_time_scale;
-    public float time_slow_powerup_scale;
 
     float game_time = 15.0f;
     float warning_time = 10.0f;
@@ -17,7 +16,6 @@ public class GameTimer : MonoBehaviour {
 
     float start_time;
     float clock_time_speed;
-    float time_slow_powerup_duration;
 
     PlayerController player_controller;
 
@@ -29,19 +27,11 @@ public class GameTimer : MonoBehaviour {
 
         current_time = 0;
         clock_time_speed = 1;
-        time_slow_powerup_duration = 0;
     }
 	
 	// Update is called once per frame
 	void Update () {
-        if (time_slow_powerup_duration > 0)
-        {
-            Time.timeScale = time_slow_powerup_scale;
-            float delta_time_multiplier = 1 / time_slow_powerup_scale;
-            player_controller.set_delta_time_multiplier(delta_time_multiplier);
-            time_slow_powerup_duration -= Time.deltaTime * delta_time_multiplier;
-        }
-        else if (event_horizon_checker.is_inside_horizon())
+        if (event_horizon_checker.is_inside_horizon())
         {
             Time.timeScale = inside_time_scale;
             clock_time_speed = inside_clock_time_speed;
@@ -83,9 +73,5 @@ public class GameTimer : MonoBehaviour {
     {
         this.clock_time_speed = clock_time_speed;
     }
-
-    public void time_slow_powerup(float time_slow_powerup_duration)
-    {
-        this.time_slow_powerup_duration = time_slow_powerup_duration;
-    }
+    
 }

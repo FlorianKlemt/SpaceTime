@@ -158,7 +158,10 @@ public class PlayerController : MonoBehaviour
         }
         if(other.transform.tag == "TimeSlowPowerup")
         {
-            game_timer.time_slow_powerup(5f);
+            GameObject[] astroids = GameObject.FindGameObjectsWithTag("Astroid");
+            foreach(GameObject astroid in astroids) {
+                astroid.GetComponent<AstroidController>().set_time_slow_powerup(5f,0.2f);
+            }
 
             powerup_generator.powerup_taken(other.gameObject);
             Destroy(other.gameObject);
