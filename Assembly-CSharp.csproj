@@ -67,6 +67,7 @@
     <Compile Include="Assets\Scripts\AstroidController.cs" />
     <Compile Include="Assets\Scripts\AstroidGenerator.cs" />
     <Compile Include="Assets\Scripts\EventHorizonChecker.cs" />
+    <Compile Include="Assets\Scripts\Experimental\AstroidWaveGenerator.cs" />
     <Compile Include="Assets\Scripts\GameTimer.cs" />
     <Compile Include="Assets\Scripts\Gravity.cs" />
     <Compile Include="Assets\Scripts\PlatformController.cs" />

@@ -711,6 +711,7 @@ GameObject:
   - component: {fileID: 426143276}
   - component: {fileID: 426143277}
   - component: {fileID: 426143275}
+  - component: {fileID: 426143278}
   m_Layer: 0
   m_Name: GameController
   m_TagString: GameController
@@ -737,7 +738,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 426143272}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 275e7c2bd8df91c47806a8bb9a38b0b7, type: 3}
   m_Name: 
@@ -798,6 +799,23 @@ MonoBehaviour:
   outside_clock_time_speed: 1
   inside_time_scale: 1
   outside_time_scale: 1
+--- !u!114 &426143278
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 426143272}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c32de7844c3f2ed4c8f0577f6201518c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  center: {fileID: 777038645}
+  astroid_prefab: {fileID: 4307101681401488, guid: 084ec28abfebee1489ab213f3995d139,
+    type: 2}
+  wave_information_field: {fileID: 586087666}
+  spawn_distance_to_center: 15
+  time_between_waves: 3
 --- !u!1001 &531545342
 Prefab:
   m_ObjectHideFlags: 0
@@ -1004,6 +1022,12 @@ Prefab:
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6e06a872e1ec5944a828e4bb30461117, type: 2}
   m_IsPrefabAsset: 0
+--- !u!114 &586087666 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114281955883688334, guid: 4f3cd3390a57400459a2643de944a89f,
+    type: 2}
+  m_PrefabInternal: {fileID: 1919219425}
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 --- !u!1 &621541995
 GameObject:
   m_ObjectHideFlags: 0
