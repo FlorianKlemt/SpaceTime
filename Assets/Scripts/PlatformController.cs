@@ -7,14 +7,14 @@ public class PlatformController : MonoBehaviour {
     public float reflected_astroid_death_time, astroid_reflection_speed_multiplier;
 
     private float bounce_powerup_duration;
-    private bool bounce_active;
+    private bool bounce_active, is_clippable;
     private PowerupGenerator powerup_generator;
     // Use this for initialization
     void Start () {
         bounce_powerup_duration = 0;
         bounce_active = false;
 
-        
+        //player = GameObject.FindGameObjectWithTag("Player");
         powerup_generator = GameObject.FindGameObjectWithTag("GameController")
                                       .GetComponent<PowerupGenerator>();
     }
@@ -34,6 +34,7 @@ public class PlatformController : MonoBehaviour {
             bounce_active = false;
             bounce_powerup_duration = 0;
         }
+
         update_platform_state();
     }
 
@@ -57,7 +58,11 @@ public class PlatformController : MonoBehaviour {
     public void update_platform_state()
     {
         MeshRenderer mesh_renderer = GetComponent<MeshRenderer>();
-        if (bounce_active)
+        if (is_clippable)
+        {
+            mesh_renderer.material.color = Color.green;
+        }
+        else if (bounce_active)
         {
             mesh_renderer.material.color = Color.magenta;
         }
@@ -81,5 +86,10 @@ public class PlatformController : MonoBehaviour {
     public void set_bounce_powerup(float bounce_powerup_duration)
     {
         this.bounce_powerup_duration = bounce_powerup_duration;
+    }
+
+    public void set_clippable(bool is_clippable)
+    {
+        this.is_clippable = is_clippable;
     }
 }

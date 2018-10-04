@@ -16,7 +16,7 @@ public class PlayerController : MonoBehaviour
     private Rigidbody player_rb;
     private bool is_grounded;
     private float distToGround;
-    private GameObject clippable_obj;
+    private GameObject clippable_obj, last_clippable_object;
     private GameTimer game_timer;
     private PowerupGenerator powerup_generator;
     private float delta_time_multiplier;
@@ -46,12 +46,19 @@ public class PlayerController : MonoBehaviour
         }else
         {
             clippable_obj = colliders_in_clip_range[0].gameObject;
-            clippable_obj.GetComponent<MeshRenderer>().material.color = Color.green;
+            clippable_obj.GetComponent<PlatformController>().set_clippable(true);
             if (colliders_in_clip_range.Length >= 2)
             {
                 Debug.Log("Multiple clippable objects! Should not be the case.");
             }
         }
+
+        //deactivate last clippable object if it is no longer clippable
+        if(last_clippable_object != null && last_clippable_object != clippable_obj)
+        {
+            last_clippable_object.GetComponent<PlatformController>().set_clippable(false);
+        }
+        last_clippable_object = clippable_obj;
     }
 
     // Update is called once per frame
@@ -151,7 +158,6 @@ public class PlayerController : MonoBehaviour
         {
             Transform shockwave = Instantiate(shockwave_prefab, other.transform.position, Quaternion.identity);
             shockwave.transform.eulerAngles = new Vector3(-90, 0, 0);
-            //shockwave.GetComponent<ShockwaveForce>().ShockWave();
 
             powerup_generator.powerup_taken(other.gameObject);
             Destroy(other.gameObject);
