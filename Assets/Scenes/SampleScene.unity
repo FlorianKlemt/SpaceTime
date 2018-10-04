@@ -815,7 +815,7 @@ MonoBehaviour:
     type: 2}
   wave_information_field: {fileID: 586087666}
   spawn_distance_to_center: 15
-  time_between_waves: 3
+  time_between_waves: 5
 --- !u!1001 &531545342
 Prefab:
   m_ObjectHideFlags: 0
@@ -2556,6 +2556,11 @@ Prefab:
       propertyPath: game_controller
       value: 
       objectReference: {fileID: 426143273}
+    - target: {fileID: 114975487339358384, guid: 48f4a6f89854799418bd4fb896a72728,
+        type: 2}
+      propertyPath: damping_on_grounded
+      value: 0.93
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 48f4a6f89854799418bd4fb896a72728, type: 2}
   m_IsPrefabAsset: 0
@@ -2893,6 +2898,21 @@ Prefab:
         type: 2}
       propertyPath: m_Pivot.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114281955883688334, guid: 4f3cd3390a57400459a2643de944a89f,
+        type: 2}
+      propertyPath: m_FontData.m_Alignment
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 224337697035015138, guid: 4f3cd3390a57400459a2643de944a89f,
+        type: 2}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114281955883688334, guid: 4f3cd3390a57400459a2643de944a89f,
+        type: 2}
+      propertyPath: m_Text
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4f3cd3390a57400459a2643de944a89f, type: 2}
